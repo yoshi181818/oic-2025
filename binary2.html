@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Decimal To Binary and Hex</title>
+
+    <script>
+        function convert() {
+            toBinary();
+            toHex();
+            toOctal();
+        }
+
+        function toBinary() {
+            var d = document.getElementById("decimal").value;
+            var i = 0;
+            var s = '';
+            for (i = 0; 0 < d || 0 == i; i++ ) {
+                s = String(Math.trunc(d % 2)) + s;
+                d = Math.trunc(d / 2);
+            }
+            document.getElementById("binary").value = s;
+        }
+
+        function clearForm() {
+            document.getElementById("decimal").value = "";
+            document.getElementById("binary").value = "";
+            document.getElementById("hex").value = "";
+            document.getElementById("octal").value = "";
+        }
+
+        function toOctal() {
+            var d = document.getElementById("decimal").value;
+            var i = 0;
+            var s = '';
+            for (i = 0; 0 < d || 0 == i; i++ ) {
+                s = String(Math.trunc(d % 8)) + s;
+                d = Math.trunc(d / 8);
+            }
+            document.getElementById("octal").value = s;
+        }
+
+        function toHex() {
+            var d = document.getElementById("decimal").value;
+            var i = 0;
+            var s = '';
+            for (i = 0; 0 < d || 0 == i; i++ ) {
+                var a = Math.trunc(d % 16);            
+                if (a < 10)
+                    s = String(a) + s;
+                else if (a == 10)
+                    s = "A" + s;
+                else if (a == 11)
+                    s = "B" + s;
+                else if (a == 12)
+                    s = "C" + s;
+                else if (a == 13)
+                    s = "D" + s;
+                else if (a == 14)
+                    s = "E" + s;
+                else if (a == 15)
+                    s = "F" + s;
+                d = Math.trunc(d / 16);
+            }
+            document.getElementById("hex").value = s;
+        }
+    </script>
+<style>
+        h2 {
+            color: red;
+        }
+        input.num {
+            text-align: right;
+            background-color: black;
+            color: white;
+        }
+        #decimal {
+            font-weight: bold;
+            background-color: darkblue;
+        }
+    </style>
+</head>
+<body>
+    <center>
+    <h2>
+        10進数→2進数/8進数/16進数変換プログラム
+    </h2>
+    <form>
+        <table>
+            <tr>
+                <td>10進数:</td><td><input type="text" id="decimal" value="86" class="num"></td>
+            </tr>
+            <tr>
+                <td>2進数:</td><td><input type="text" id="binary" class="num"></td>
+            </tr>
+            <tr>
+                <td>8進数:</td><td><input type="text" id="octal" class="num"></td>
+            </tr>
+            <tr>
+                <td>16進数:</td><td><input type="text" id="hex" class="num"></td>
+            </tr>
+        </table>
+        <input type="button" onclick="convert()" value="変換" >
+        <input type="button" onclick="clearForm()" value="消去" >
+    </form>
+    </center>
+</body>
+</html>

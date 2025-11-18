@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Decimal To Binary and Hex</title>
+
+    <script>
+        function convert() {
+            toBinary();
+            toHex();
+            toOctal();
+        }
+
+        function toBinary() {
+            var d = document.getElementById("decimal").value;
+            var i = 0;
+            var s = '';
+            for (i = 0; 0 < d || 0 == i; i++ ) {
+                s = String(Math.trunc(d % 2)) + s;
+                d = Math.trunc(d / 2);
+            }
+            document.getElementById("binary").value = s;
+        }
+
+        function clearForm() {
+            document.getElementById("decimal").value = "";
+            document.getElementById("binary").value = "";
+            document.getElementById("hex").value = "";
+            document.getElementById("octal").value = "";
+        }
+
+        function toOctal() {
+            var d = document.getElementById("decimal").value;
+            var i = 0;
+            var s = '';
+            for (i = 0; 0 < d || 0 == i; i++ ) {
+                s = String(Math.trunc(d % 8)) + s;
+                d = Math.trunc(d / 8);
+            }
+            document.getElementById("octal").value = s;
+        }
+
+        function toHex() {
+            var d = document.getElementById("decimal").value;
+            var i = 0;
+            var s = '';
+            for (i = 0; 0 < d || 0 == i; i++ ) {
+                var a = Math.trunc(d % 16);            
+                if (a < 10)
+                    s = String(a) + s;
+                else if (a == 10)
+                    s = "A" + s;
+                else if (a == 11)
+                    s = "B" + s;
+                else if (a == 12)
+                    s = "C" + s;
+                else if (a == 13)
+                    s = "D" + s;
+                else if (a == 14)
+                    s = "E" + s;
+                else if (a == 15)
+                    s = "F" + s;
+                d = Math.trunc(d / 16);
+            }
+            document.getElementById("hex").value = s;
+        }
+    </script>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h2 class="text-center text-danger"></h2>
+    <div class="container">
+        <div class="justify-content-start">
+            <form>
+                <div class="form-group row mb-3 ms-5">
+                    <label class="col-sm-2 col-form-label">10進数:</label>
+                    <div class="col-sm me-5"><input type="text" class="form-control text-end" id="decimal" value="0"></div>
+                </div>
+
+                <div class="form-group row mb-3 ms-5">
+                    <label class="col-sm-2 col-form-label">2進数:</label>
+                    <div class="col-sm me-5"><input type="text" readonly class="form-control text-end" id="binary" value="0"></div>
+                </div>
+
+                <div class="form-group row mb-3 ms-5">
+                    <label class="col-sm-2 col-form-label">8進数:</label>
+                    <div class="col-sm me-5"><input type="text" readonly class="form-control text-end" id="octal" value="0"></div>
+                </div>
+                <div class="form-group row mb-3 ms-5">
+                    <label class="col-sm-2 col-form-label">8進数:</label>
+                    <div class="col-sm me-5"><input type="text" readonly class="form-control text-end" id="hex" value="0"></div>
+                </div>
+
+                <div class="text-center">
+                    <input type="button" onclick="convert()" class="col-sm btn btn-secondary" value="変換">
+                    <input type="button" onclick="clearForm()" class="col-sm btn btn-outline-danger" value="クリア">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Decimal To Binary</title>
+</head>
+<script>
+    function toBinary() {
+        var d = document.getElementById("decimal").value;
+        var i = 0;
+        var s = '';
+        for (i = 0; 0 < d || 0 == i; i++ ) {
+            s = String(Math.trunc(d % 2)) + s;
+            d = Math.trunc(d / 2);
+        }
+        document.getElementById("binary").value = s;
+    }
+    function clearForm() {
+        document.getElementById("decimal").value = "";
+        document.getElementById("binary").value = "";
+    }
+</script>
+<body>
+    <h2>
+        10進数→2進数変換プログラム
+    </h2>
+    <form>
+        10進数:<input type="text" id="decimal"><br>
+        2進数:<input type="text" id="binary"><br>
+        <input type="button" onclick="toBinary()" value="変換" >
+        <input type="button" onclick="clearForm()" value="消去" >
+    </form>
+</body>
+</html>
